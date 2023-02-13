@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-#from AppCoder.models import *
+from AppCoder.models import *
+from AppCoder.forms import CursoFormulario
+
 
 # Create your views here.
 def inicio(request):
@@ -28,6 +30,28 @@ def curso(self):
     curso.save()
     documentoDeTexto = f"--->Curso: {curso.nombre} Camada: {curso.camada}"
     return HttpResponse(documentoDeTexto)
-"""
+
 def cursoFormulario(request):
-    return render(request="AppCoder/cursoFormulario.html")
+    if request.method == 'POST':
+        curso = Curso(request.POST['curso'], (request.POST['camada']))
+        curso.save()
+        return render(request, "AppCoder/inicio.html")
+    
+    return render(request, "AppCoder/cursoFormulario.html")
+"""
+
+def cursoFormulario(request):
+    if request.method == 'POST':
+        miFormulario = CursoFormulario(request.POST)
+        print(miFormulario)
+        
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            curso = Curso(nombre=informacion['curso'], camada=informacion['camada'])
+            curso.save()
+            return render(request, "AppCoder/inicio.html")
+        
+    else:
+        miFormulario = CursoFormulario()
+        
+    return render(request, "AppCoder/cursoFormulario.html", {"miFormulario":miFormulario})        
