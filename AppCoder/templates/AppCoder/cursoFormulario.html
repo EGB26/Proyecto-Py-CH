@@ -7,6 +7,10 @@
     <title>Formulario - Agregar Curso</title>
 </head>
 <body>
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+        <!-- Aqui va lo que cambia y lo asociado a esta vista -->
     {% if miFormulario.errors %}
 
     <p style="color: red;"> Estan mal los datos, revisar</p>
@@ -26,5 +30,7 @@
         <input type="submit" value="Enviar">
 
     </form>
+
+{% endblock %}
 </body>
 </html>
