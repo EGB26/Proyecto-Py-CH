@@ -22,3 +22,13 @@ urlpatterns = [
     path(r'^editar/(?P<pk>\d+)$', views.CursoUpdate.as_view(), name='Edit'),
     path(r'^borrar/(?P<pk>\d+)$', views.CursoDelete.as_view(), name='Delete'),
 ]
+
+"""
+Es una expresión regular, que se compara con la URL real.
+Aquí r'' especifica que la cadena es una cadena sin procesar. 
+'^' significa el comienzo y $ marca el final.
+Ahora 'pk' (cuando está dentro de <>) representa una clave principal. 
+Una clave principal puede ser cualquier cosa, por ejemplo. puede ser una 
+cadena, un número, etc. Una clave principal se usa para diferenciar 
+diferentes columnas de una tabla.
+"""

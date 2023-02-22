@@ -24,7 +24,7 @@ def profesores(request):
         
         if miFormulario.is_valid:
             informacion = miFormulario.cleaned_data
-            profesor = Profesor(nombre=informacion['nombre'], camada=informacion['apellido'], 
+            profesor = Profesor(nombre=informacion['nombre'], apellido=informacion['apellido'], 
                                 email=informacion['email'], profesion=informacion['profesion'])
             profesor.save()
             return render(request, "AppCoder/inicio.html")
@@ -105,7 +105,7 @@ def eliminarProfesor(request, profesor_nombre):
     profesor = Profesor.objects.get(nombre=profesor_nombre)
     profesor.delete()
     
-    profesor = Profesor.objects.all()
+    profesores = Profesor.objects.all()
     contexto= {"profesores":profesores}
     return render(request, "AppCoder/leerProfesores.html", contexto)
 
